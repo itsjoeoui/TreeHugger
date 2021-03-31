@@ -46,7 +46,7 @@ function HomeScreen() {
       </MapView>
       <TouchableOpacity style={styles.googlelogin}>
         <SocialIcon
-          title='Sign in With Google'
+          title='Sign in with Google'
           light
           button
           type='google'
