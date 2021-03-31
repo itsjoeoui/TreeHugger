@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import firebase from 'firebase/app';
 import MapView from 'react-native-maps';
+import { SocialIcon } from 'react-native-elements';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -22,7 +23,14 @@ if (firebase.apps.length === 0) {
 export default function App() {
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} />
+      <MapView style={styles.map}/>
+      <TouchableOpacity style={styles.googlelogin}>
+        <SocialIcon
+          title='Sign in With Google'
+          button
+          type='google'
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -37,5 +45,10 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+  },
+  googlelogin: {
+    position: 'absolute',
+    width: Dimensions.get('window').width/1.5,
+    bottom: Dimensions.get('window').height/10,
   },
 });
