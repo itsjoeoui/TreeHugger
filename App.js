@@ -6,6 +6,9 @@ import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import { SocialIcon } from 'react-native-elements';
 import tree from './assets/tree.png';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -22,7 +25,7 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp({});
 }
 
-export default function App() {
+function HomeScreen() {
   return (
     <View style={styles.container}>
       <MapView
@@ -44,11 +47,77 @@ export default function App() {
       <TouchableOpacity style={styles.googlelogin}>
         <SocialIcon
           title='Sign in With Google'
+          light
           button
           type='google'
         />
       </TouchableOpacity>
     </View>
+  );
+}
+
+function MessagesScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Messages!</Text>
+    </View>
+  );
+}
+
+function ProfileScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Profile!</Text>
+    </View>
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'tree'
+                : 'tree-outline';
+              return <MaterialCommunityIcons name={iconName} size={size*1.2} color={color} />;
+            } else if (route.name === 'Messages') {
+              iconName = focused ? 'message' : 'message-outline';
+              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'face' : 'face-outline';
+              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+            } else if (route.name === 'Settings') {
+              iconName = focused ? 'settings' : 'settings-outline';
+              return <Ionicons name={iconName} size={size} color={color} />;
+            }
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'green',
+          inactiveTintColor: 'gray',
+        }}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Messages" component={MessagesScreen} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
