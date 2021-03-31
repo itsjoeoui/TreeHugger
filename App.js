@@ -23,7 +23,14 @@ if (firebase.apps.length === 0) {
 export default function App() {
   return (
     <View style={styles.container}>
-      <MapView style={styles.map}/>
+      <MapView style={styles.map}
+        initialRegion={{
+          latitude: 45.489724,
+          longitude: -73.587916,
+          latitudeDelta: 0.0043,
+          longitudeDelta: 0.0034,
+        }}
+      />
       <TouchableOpacity style={styles.googlelogin}>
         <SocialIcon
           title='Sign in With Google'
