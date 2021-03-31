@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
-import * as firebase from 'firebase';
-import MapView from 'react-native-maps'
+import firebase from 'firebase/app';
+import MapView from 'react-native-maps';
 
 // Initialize Firebase
 const firebaseConfig = {
