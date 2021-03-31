@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Dimensions, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import firebase from 'firebase/app';
 import MapView from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 import { SocialIcon } from 'react-native-elements';
+import tree from './assets/tree.png';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -23,14 +25,22 @@ if (firebase.apps.length === 0) {
 export default function App() {
   return (
     <View style={styles.container}>
-      <MapView style={styles.map}
+      <MapView
+        style={styles.map}
         initialRegion={{
           latitude: 45.489724,
           longitude: -73.587916,
           latitudeDelta: 0.0043,
           longitudeDelta: 0.0034,
-        }}
-      />
+        }}>
+        <Marker
+          coordinate={{
+            latitude: 45.489724,
+            longitude: -73.587916,
+          }}>
+          <Image style={styles.tree} source={tree} />
+        </Marker>
+      </MapView>
       <TouchableOpacity style={styles.googlelogin}>
         <SocialIcon
           title='Sign in With Google'
@@ -52,10 +62,14 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+    position: 'relative',
   },
   googlelogin: {
-    position: 'absolute',
     width: Dimensions.get('window').width/1.5,
     bottom: Dimensions.get('window').height/10,
+  },
+  tree: {
+    width: 40,
+    height: 40,
   },
 });
