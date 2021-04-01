@@ -54,8 +54,31 @@ function HomeScreen() {
 
 function ProfileScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile!</Text>
+    <View style={styles.login}>
+      <TouchableOpacity>
+        <SocialIcon
+          title='Sign in with Google'
+          light
+          button
+          type='google'
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <SocialIcon
+          title='Sign in with Twitter'
+          light
+          button
+          type='twitter'
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <SocialIcon
+          title='Sign in with Facebook'
+          light
+          button
+          type='facebook'
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -124,5 +147,11 @@ const styles = StyleSheet.create({
   tree: {
     width: 40,
     height: 40,
+  },
+  login: {
+    width: '60%',
+    height:"100%",
+    justifyContent: 'center',
+    marginLeft: '20%'
   },
 });
