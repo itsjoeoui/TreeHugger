@@ -1,16 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import firebase from 'firebase/app';
-import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
-import { SocialIcon } from 'react-native-elements';
-import tree from './assets/tree.png';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import HomeScreen from './src/screens/HomeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -25,70 +23,6 @@ const firebaseConfig = {
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
-}
-
-function HomeScreen() {
-  return (
-    <View
-      style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
-    >
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: 45.489724,
-          longitude: -73.587916,
-          latitudeDelta: 0.0043,
-          longitudeDelta: 0.0034,
-        }}>
-        <Marker
-          coordinate={{
-            latitude: 45.489724,
-            longitude: -73.587916,
-          }}>
-          <Image style={styles.tree} source={tree} />
-        </Marker>
-      </MapView>
-    </View>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={styles.login}>
-      <TouchableOpacity>
-        <SocialIcon
-          title='Sign in with Google'
-          light
-          button
-          type='google'
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <SocialIcon
-          title='Sign in with Twitter'
-          light
-          button
-          type='twitter'
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <SocialIcon
-          title='Sign in with Facebook'
-          light
-          button
-          type='facebook'
-        />
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
 }
 
 const Stack = createStackNavigator();
@@ -137,21 +71,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  map: {
-    flex: 1,
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-  tree: {
-    width: 40,
-    height: 40,
-  },
-  login: {
-    width: '60%',
-    height:"100%",
-    justifyContent: 'center',
-    marginLeft: '20%'
-  },
-});
