@@ -29,7 +29,7 @@ if (firebase.apps.length === 0) {
 
 function HomeScreen() {
   return (
-    <SafeAreaView
+    <View
       style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
     >
       <MapView
@@ -48,7 +48,7 @@ function HomeScreen() {
           <Image style={styles.tree} source={tree} />
         </Marker>
       </MapView>
-    </SafeAreaView>
+    </View>
   );
 }
 
