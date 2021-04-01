@@ -8,7 +8,9 @@ import { SocialIcon } from 'react-native-elements';
 import tree from './assets/tree.png';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -27,7 +29,9 @@ if (firebase.apps.length === 0) {
 
 function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+    >
       <MapView
         style={styles.map}
         initialRegion={{
@@ -44,23 +48,7 @@ function HomeScreen() {
           <Image style={styles.tree} source={tree} />
         </Marker>
       </MapView>
-      <TouchableOpacity style={styles.googlelogin}>
-        <SocialIcon
-          title='Sign in with Google'
-          light
-          button
-          type='google'
-        />
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-function MessagesScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Messages!</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -80,62 +68,58 @@ function SettingsScreen() {
   );
 }
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = focused
-                ? 'tree'
-                : 'tree-outline';
-              return <MaterialCommunityIcons name={iconName} size={size*1.2} color={color} />;
-            } else if (route.name === 'Messages') {
-              iconName = focused ? 'message' : 'message-outline';
-              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
-            } else if (route.name === 'Profile') {
-              iconName = focused ? 'face' : 'face-outline';
-              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
-            } else if (route.name === 'Settings') {
-              iconName = focused ? 'settings' : 'settings-outline';
-              return <Ionicons name={iconName} size={size} color={color} />;
-            }
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: 'green',
-          inactiveTintColor: 'gray',
-        }}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Messages" component={MessagesScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Tree Hugger">
+            {() => (
+              <Tab.Navigator
+                screenOptions={({ route }) => ({
+                  tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+        
+                    if (route.name === 'Home') {
+                      iconName = focused
+                        ? 'tree'
+                        : 'tree-outline';
+                      return <MaterialCommunityIcons name={iconName} size={size*1.2} color={color} />;
+                    } else if (route.name === 'Profile') {
+                      iconName = focused ? 'face' : 'face-outline';
+                      return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+                    } else if (route.name === 'Settings') {
+                      iconName = focused ? 'settings' : 'settings-outline';
+                      return <Ionicons name={iconName} size={size} color={color} />;
+                    }
+                  },
+                })}
+                tabBarOptions={{
+                  activeTintColor: 'green',
+                  inactiveTintColor: 'gray',
+                }}
+              >
+                <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Profile" component={ProfileScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+              </Tab.Navigator>
+            )}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+      <StatusBar style='dark'/>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   map: {
+    flex: 1,
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    position: 'relative',
-  },
-  googlelogin: {
-    width: Dimensions.get('window').width/1.5,
-    bottom: Dimensions.get('window').height/10,
   },
   tree: {
     width: 40,
