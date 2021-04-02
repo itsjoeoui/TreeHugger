@@ -1,14 +1,14 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import firebase from 'firebase/app';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import HomeScreen from './src/screens/HomeScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import SettingsScreen from './src/screens/SettingsScreen';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import firebase from "firebase/app";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import HomeScreen from "./src/screens/HomeScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
+import SettingsScreen from "./src/screens/SettingsScreen";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -18,7 +18,7 @@ const firebaseConfig = {
   projectId: "treehugger-e8c37",
   storageBucket: "treehugger-e8c37.appspot.com",
   messagingSenderId: "467428435573",
-  appId: "1:467428435573:web:42c9877057d1b7effafa3c"
+  appId: "1:467428435573:web:42c9877057d1b7effafa3c",
 };
 
 if (firebase.apps.length === 0) {
@@ -39,24 +39,36 @@ export default function App() {
                 screenOptions={({ route }) => ({
                   tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
-        
-                    if (route.name === 'Home') {
-                      iconName = focused
-                        ? 'tree'
-                        : 'tree-outline';
-                      return <MaterialCommunityIcons name={iconName} size={size*1.2} color={color} />;
-                    } else if (route.name === 'Profile') {
-                      iconName = focused ? 'face' : 'face-outline';
-                      return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
-                    } else if (route.name === 'Settings') {
-                      iconName = focused ? 'settings' : 'settings-outline';
-                      return <Ionicons name={iconName} size={size} color={color} />;
+
+                    if (route.name === "Home") {
+                      iconName = focused ? "tree" : "tree-outline";
+                      return (
+                        <MaterialCommunityIcons
+                          name={iconName}
+                          size={size * 1.2}
+                          color={color}
+                        />
+                      );
+                    } else if (route.name === "Profile") {
+                      iconName = focused ? "face" : "face-outline";
+                      return (
+                        <MaterialCommunityIcons
+                          name={iconName}
+                          size={size}
+                          color={color}
+                        />
+                      );
+                    } else if (route.name === "Settings") {
+                      iconName = focused ? "settings" : "settings-outline";
+                      return (
+                        <Ionicons name={iconName} size={size} color={color} />
+                      );
                     }
                   },
                 })}
                 tabBarOptions={{
-                  activeTintColor: 'green',
-                  inactiveTintColor: 'gray',
+                  activeTintColor: "green",
+                  inactiveTintColor: "gray",
                 }}
               >
                 <Tab.Screen name="Home" component={HomeScreen} />
@@ -67,7 +79,7 @@ export default function App() {
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
-      <StatusBar style='dark'/>
+      <StatusBar style="dark" />
     </SafeAreaProvider>
   );
 }

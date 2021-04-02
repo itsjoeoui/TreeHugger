@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Image, Modal, Text, Pressable } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import tree from '../assets/tree.png';
+import React, { useState } from "react";
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  Image,
+  Modal,
+  Text,
+  Pressable,
+} from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import tree from "../assets/tree.png";
 
 const HomeScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View
-      style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+      style={{ flex: 1, justifyContent: "space-between", alignItems: "center" }}
     >
       <MapView
         style={styles.map}
@@ -50,13 +58,13 @@ const HomeScreen = () => {
       </Modal>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   map: {
     flex: 1,
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   },
   tree: {
     width: 50,
@@ -73,12 +81,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
-    elevation: 5
+    elevation: 5,
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   buttonClose: {
     backgroundColor: "#2196F3",
@@ -86,12 +94,12 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });
 
 export default HomeScreen;
