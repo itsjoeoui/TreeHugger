@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View, Image} from 'react-native';
-import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import tree from '../assets/tree.png';
 
 const HomeScreen = () => {
