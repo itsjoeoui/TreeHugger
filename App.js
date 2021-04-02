@@ -9,6 +9,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
+import MessageScreen from "./src/screens/MessageScreen";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -77,6 +78,7 @@ export default function App() {
               </Tab.Navigator>
             )}
           </Stack.Screen>
+          <Stack.Screen name="Message" component={MessageScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="dark" />
