@@ -1,8 +1,19 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { SocialIcon } from "react-native-elements";
+import { createStackNavigator } from "@react-navigation/stack";
 
-const ProfileScreen = () => {
+const ProfileStack = createStackNavigator();
+
+const ProfileStackScreen = () => {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen name="Profile" component={Profile} />
+    </ProfileStack.Navigator>
+  );
+};
+
+const Profile = () => {
   return (
     <View style={styles.login}>
       <TouchableOpacity>
@@ -32,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default ProfileStackScreen;

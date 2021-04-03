@@ -1,9 +1,22 @@
 import React from "react";
 import { Dimensions, StyleSheet, View, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import { createStackNavigator } from "@react-navigation/stack";
 import tree from "../assets/tree.png";
+import Message from "./MessageScreen";
 
-const HomeScreen = ({ navigation }) => {
+const HomeStack = createStackNavigator();
+
+const HomeStackScreen = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="Message" component={Message} />
+    </HomeStack.Navigator>
+  );
+};
+
+const Home = ({ navigation }) => {
   return (
     <View
       style={{ flex: 1, justifyContent: "space-between", alignItems: "center" }}
@@ -43,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default HomeStackScreen;

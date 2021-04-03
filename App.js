@@ -3,13 +3,11 @@ import { StatusBar } from "expo-status-bar";
 import firebase from "firebase/app";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import HomeScreen from "./src/screens/HomeScreen";
-import ProfileScreen from "./src/screens/ProfileScreen";
-import SettingsScreen from "./src/screens/SettingsScreen";
-import MessageScreen from "./src/screens/MessageScreen";
+import HomeStackScreen from "./src/screens/HomeStackScreen";
+import ProfileStackScreen from "./src/screens/ProfileStackScreen";
+import SettingsStackScreen from "./src/screens/SettingsStackScreen";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -26,60 +24,50 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Tree Hugger">
-            {() => (
-              <Tab.Navigator
-                screenOptions={({ route }) => ({
-                  tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
 
-                    if (route.name === "Home") {
-                      iconName = focused ? "tree" : "tree-outline";
-                      return (
-                        <MaterialCommunityIcons
-                          name={iconName}
-                          size={size * 1.2}
-                          color={color}
-                        />
-                      );
-                    } else if (route.name === "Profile") {
-                      iconName = focused ? "face" : "face-outline";
-                      return (
-                        <MaterialCommunityIcons
-                          name={iconName}
-                          size={size}
-                          color={color}
-                        />
-                      );
-                    } else if (route.name === "Settings") {
-                      iconName = focused ? "settings" : "settings-outline";
-                      return (
-                        <Ionicons name={iconName} size={size} color={color} />
-                      );
-                    }
-                  },
-                })}
-                tabBarOptions={{
-                  activeTintColor: "green",
-                  inactiveTintColor: "gray",
-                }}
-              >
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Profile" component={ProfileScreen} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
-              </Tab.Navigator>
-            )}
-          </Stack.Screen>
-          <Stack.Screen name="Message" component={MessageScreen} />
-        </Stack.Navigator>
+              if (route.name === "Home") {
+                iconName = focused ? "tree" : "tree-outline";
+                return (
+                  <MaterialCommunityIcons
+                    name={iconName}
+                    size={size * 1.2}
+                    color={color}
+                  />
+                );
+              } else if (route.name === "Profile") {
+                iconName = focused ? "face" : "face-outline";
+                return (
+                  <MaterialCommunityIcons
+                    name={iconName}
+                    size={size}
+                    color={color}
+                  />
+                );
+              } else if (route.name === "Settings") {
+                iconName = focused ? "settings" : "settings-outline";
+                return <Ionicons name={iconName} size={size} color={color} />;
+              }
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: "green",
+            inactiveTintColor: "gray",
+          }}
+        >
+          <Tab.Screen name="Home" component={HomeStackScreen} />
+          <Tab.Screen name="Profile" component={ProfileStackScreen} />
+          <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="dark" />
     </SafeAreaProvider>
