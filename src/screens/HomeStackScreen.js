@@ -19,7 +19,13 @@ const HomeStackScreen = () => {
 const Home = ({ navigation }) => {
   return (
     <View
-      style={{ flex: 1, justifyContent: "space-between", alignItems: "center" }}
+      style={{
+        flex: 1,
+        justifyContent: "space-between",
+        alignItems: "center",
+        position: "absolute",
+        marginVertical: -69,
+      }}
     >
       <MapView
         style={styles.map}

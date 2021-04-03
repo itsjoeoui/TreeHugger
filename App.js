@@ -1,7 +1,10 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import firebase from "firebase/app";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  getFocusedRouteNameFromRoute,
+} from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -27,6 +30,15 @@ if (firebase.apps.length === 0) {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const getTabBarVisibility = (route) => {
+    const routeName = getFocusedRouteNameFromRoute(route);
+
+    if (routeName === "Message") {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -64,7 +76,13 @@ export default function App() {
             inactiveTintColor: "gray",
           }}
         >
-          <Tab.Screen name="Home" component={HomeStackScreen} />
+          <Tab.Screen
+            name="Home"
+            component={HomeStackScreen}
+            options={({ route }) => ({
+              tabBarVisible: getTabBarVisibility(route),
+            })}
+          />
           <Tab.Screen name="Profile" component={ProfileStackScreen} />
           <Tab.Screen name="Settings" component={SettingsStackScreen} />
         </Tab.Navigator>
