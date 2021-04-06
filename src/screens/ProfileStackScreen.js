@@ -84,7 +84,7 @@ const UserInfo = () => (
         >
           Joey Yu
         </Text>
-        <Text style={[styles.textCenter, { fontSize: 16 }]}>Deeds: 23</Text>
+        <Text style={[styles.textCenter, { fontSize: 16 }]}>Level: 23</Text>
       </View>
     </View>
   </View>
@@ -152,7 +152,7 @@ const Achievements = () => (
         ]}
       >
         <Text style={[styles.textCenter, { fontSize: 16 }]}>
-          Leave your first deed.
+          Leave your first message.
         </Text>
       </View>
     </View>
