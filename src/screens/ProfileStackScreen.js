@@ -68,8 +68,7 @@ const UserInfo = () => (
       <Image
         style={styles.image}
         source={{
-          uri:
-            "https://www.ajactraining.org/wp-content/uploads/2019/09/image-placeholder.jpg",
+          uri: "https://avatars0.githubusercontent.com/u/25695219?v=4",
         }}
       />
       <View
@@ -83,7 +82,7 @@ const UserInfo = () => (
           numberOfLines={1}
           style={[styles.textCenter, { fontSize: 26 }]}
         >
-          John Johnson
+          Joey Yu
         </Text>
         <Text style={[styles.textCenter, { fontSize: 16 }]}>Deeds: 23</Text>
       </View>
