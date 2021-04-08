@@ -4,6 +4,7 @@ import MapView, { Marker } from "react-native-maps";
 import { createStackNavigator } from "@react-navigation/stack";
 import tree from "../assets/tree.png";
 import Message from "./MessageScreen";
+import person from "../assets/person.png";
 
 const HomeStack = createStackNavigator();
 
@@ -38,8 +39,16 @@ const Home = ({ navigation }) => {
       >
         <Marker
           coordinate={{
-            latitude: 45.489724,
-            longitude: -73.587916,
+            latitude: 45.489524,
+            longitude: -73.587716,
+          }}
+        >
+          <Image style={styles.person} source={person} />
+        </Marker>
+        <Marker
+          coordinate={{
+            latitude: 45.489824,
+            longitude: -73.588016,
           }}
           onPress={() => navigation.navigate("Message")}
         >
@@ -57,6 +66,10 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height,
   },
   tree: {
+    width: 50,
+    height: 50,
+  },
+  person: {
     width: 50,
     height: 50,
   },
