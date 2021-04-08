@@ -24,7 +24,7 @@ const ProfileStackScreen = () => {
 };
 
 const Profile = () => (
-  <ScrollView style={styles.scrollView}>
+  <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
     <UserInfo />
     <View
       style={{
@@ -35,9 +35,7 @@ const Profile = () => (
     >
       <Text style={[styles.textCenter, { fontSize: 20 }]}>New Updates</Text>
       <Pressable>
-        <Text style={{ fontSize: 16, textAlignVertical: "bottom" }}>
-          View All
-        </Text>
+        <Text style={{ fontSize: 16, paddingTop: 4 }}>View All</Text>
       </Pressable>
     </View>
     <View style={styles.line} />
@@ -50,11 +48,9 @@ const Profile = () => (
         justifyContent: "space-between",
       }}
     >
-      <Text style={[styles.textCenter, { fontSize: 20 }]}>Achievements</Text>
+      <Text style={{ fontSize: 20 }}>Achievements</Text>
       <Pressable>
-        <Text style={{ fontSize: 16, textAlignVertical: "bottom" }}>
-          View All
-        </Text>
+        <Text style={{ fontSize: 16, paddingTop: 4 }}>View All</Text>
       </Pressable>
     </View>
     <View style={styles.line} />
