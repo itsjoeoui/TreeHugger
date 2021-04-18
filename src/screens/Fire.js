@@ -54,9 +54,7 @@ class Fire {
   };
 
   on = (callback) =>
-    this.ref
-      .limitToLast(20)
-      .on("child_added", (snapshot) => callback(this.parse(snapshot)));
+    this.ref.on("child_added", (snapshot) => callback(this.parse(snapshot)));
 
   get timestamp() {
     return firebase.database.ServerValue.TIMESTAMP;
