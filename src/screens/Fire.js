@@ -2,7 +2,9 @@ import firebase from "firebase";
 
 class Fire {
   constructor() {
-    this.init();
+    if (firebase.apps.length === 0) {
+      this.init();
+    }
     this.observeAuth();
   }
 
