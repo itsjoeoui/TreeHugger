@@ -1,0 +1,2 @@
+# TreeHugger
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/07d75377fe3f4a72aefd659f3df4168d)](https://app.codacy.com/gh/itsjoeoui/TreeHugger?utm_source=github.com&utm_medium=referral&utm_content=itsjoeoui/TreeHugger&utm_campaign=Badge_Grade_Settings)
