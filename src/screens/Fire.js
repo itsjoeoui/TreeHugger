@@ -11,7 +11,7 @@ import {
 
 class Fire {
   constructor() {
-    if (firebase.apps.length === 0) {
+    if (!firebase.apps.length) {
       this.init();
     }
     this.observeAuth();
