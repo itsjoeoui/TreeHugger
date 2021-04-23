@@ -1,4 +1,13 @@
 import firebase from "firebase";
+import {
+  APIKEY,
+  AUTHDOMAIN,
+  DATABASEURL,
+  PROJECTID,
+  STORAGEBUCKET,
+  MESSAGINGSENDERID,
+  APPID,
+} from "@env";
 
 class Fire {
   constructor() {
@@ -10,13 +19,13 @@ class Fire {
 
   init = () =>
     firebase.initializeApp({
-      apiKey: "AIzaSyAwWy-UfGf_IUstwX1x8V64lLW1AgfLai8",
-      authDomain: "treehugger-e8c37.firebaseapp.com",
-      databaseURL: "https://treehugger-e8c37-default-rtdb.firebaseio.com",
-      projectId: "treehugger-e8c37",
-      storageBucket: "treehugger-e8c37.appspot.com",
-      messagingSenderId: "467428435573",
-      appId: "1:467428435573:web:42c9877057d1b7effafa3c",
+      apiKey: APIKEY,
+      authDomain: AUTHDOMAIN,
+      databaseURL: DATABASEURL,
+      projectId: PROJECTID,
+      storageBucket: STORAGEBUCKET,
+      messagingSenderId: MESSAGINGSENDERID,
+      appId: APPID,
     });
 
   observeAuth = () =>
